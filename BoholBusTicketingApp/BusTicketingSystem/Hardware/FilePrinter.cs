@@ -13,23 +13,22 @@ namespace BusTicketingSystem.Hardware
             _logPath = Path.Combine(AppContext.BaseDirectory, "printed_tickets.log");
         }
 
-        public bool PrintTicket(string ticketData)
+        public void Print(string content)
         {
             if (!_isOnline)
-                return false;
+                return;
 
             try
             {
                 // Print to console for visibility
-                Console.WriteLine(ticketData);
+                Console.WriteLine(content);
                 
                 // Also write to file for logging
-                File.AppendAllText(_logPath, ticketData + "\n---\n");
-                return true;
+                File.AppendAllText(_logPath, content + "\n---\n");
             }
             catch
             {
-                return false;
+                // Silently fail if printing fails
             }
         }
 

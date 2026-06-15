@@ -40,11 +40,7 @@ namespace BusTicketingSystem.Services
                 
                 if (_printer != null)
                 {
-                    bool printSuccess = _printer.PrintTicket(content);
-                    if (!printSuccess)
-                    {
-                        throw new Exception("Printer is offline or unavailable");
-                    }
+                    _printer.Print(content);
                 }
             }
             catch (Exception ex)
