@@ -26,15 +26,31 @@ namespace BusTicketingSystem.Services
             ticket.DateIssued = DateTime.Now;
             _ticketRepo.Add(ticket);
 
-            // Print
+            // Print ticket
             try
             {
-                string content = $"Ticket:{ticket.ID}\nPassenger:{ticket.PassengerName}\nFrom:{ticket.FromLocation}\nTo:{ticket.ToLocation}\nFare:{ticket.Fare:F2}\nTime:{ticket.DateIssued:yyyy-MM-dd HH:mm:ss}\n";
-                _printer.Print(content);
+                string content = $"===== BOHOL BUS TICKET =====\n" +
+                    $"Ticket ID: {ticket.ID}\n" +
+                    $"Passenger: {ticket.PassengerName}\n" +
+                    $"From: {ticket.FromLocation}\n" +
+                    $"To: {ticket.ToLocation}\n" +
+                    $"Fare: ₱{ticket.Fare:F2}\n" +
+                    $"Date & Time: {ticket.DateIssued:yyyy-MM-dd HH:mm:ss}\n" +
+                    $"=============================\n";
+                
+                if (_printer != null)
+                {
+                    bool printSuccess = _printer.PrintTicket(content);
+                    if (!printSuccess)
+                    {
+                        throw new Exception("Printer is offline or unavailable");
+                    }
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                // swallow for now, could log and surface error
+                System.Diagnostics.Debug.WriteLine($"Printing error: {ex.Message}");
+                // Don't re-throw - ticket was created even if printing failed
             }
         }
 

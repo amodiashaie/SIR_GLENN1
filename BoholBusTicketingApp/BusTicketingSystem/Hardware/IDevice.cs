@@ -2,6 +2,7 @@ namespace BusTicketingSystem.Hardware
 {
     public interface IDevice
     {
-        void Print(string content);
+        bool PrintTicket(string ticketData);
+        bool IsHardwareAvailable();
     }
 }
