@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+	<TargetFramework>net10.0</TargetFramework>
+	<IsPackable>false</IsPackable>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+	<PackageReference Include="xunit" Version="2.6.2" />
+	<PackageReference Include="xunit.runner.visualstudio" Version="2.6.2" />
+	<PackageReference Include="Moq" Version="4.20.0" />
+	<ProjectReference Include="..\BoholBusTicketingApp\BoholBusTicketingApp.csproj" />
+  </ItemGroup>
+</Project>

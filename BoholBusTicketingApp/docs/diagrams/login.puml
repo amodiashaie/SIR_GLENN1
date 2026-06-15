@@ -1,0 +1,9 @@
+@startuml
+actor User
+participant LoginForm
+participant IAuthenticationService
+User -> LoginForm: Enter credentials
+LoginForm -> IAuthenticationService: Authenticate()
+IAuthenticationService --> LoginForm: User or null
+LoginForm -> LoginForm: Open role-based form
+@enduml

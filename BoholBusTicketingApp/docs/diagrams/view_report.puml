@@ -1,0 +1,10 @@
+@startuml
+actor Admin
+participant AdminForm
+participant ITicketingService
+Admin -> AdminForm: Select date
+AdminForm -> ITicketingService: GetTicketsIssuedByDate(date)
+ITicketingService --> AdminForm: List<Ticket>
+AdminForm -> AdminForm: Aggregate totals
+AdminForm --> Admin: display report
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+actor Conductor
+participant TicketForm
+participant ITicketingService
+participant IDevice
+Conductor -> TicketForm: Fill passenger + select from/to
+TicketForm -> TicketForm: Validate
+TicketForm -> ITicketingService: CreateTicket(ticket)
+ITicketingService -> IDevice: Print(ticket)
+IDevice --> ITicketingService: OK
+ITicketingService --> TicketForm: success
+TicketForm --> Conductor: show success
+@enduml
